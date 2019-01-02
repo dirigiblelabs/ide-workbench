@@ -8,7 +8,6 @@
  * Contributors:
  *   SAP - initial API and implementation
  */
-
 angular.module('about', [])
 .controller('AboutController', ['$scope', '$http', function ($scope, $http) {
 
