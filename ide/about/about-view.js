@@ -8,7 +8,6 @@
  * Contributors:
  *   SAP - initial API and implementation
  */
-
 exports.getView = function() {
 	var view = {
 			"id":"about",
