@@ -34,6 +34,13 @@ exports.getMenu = function() {
 							"order":"102",
 							"event":"workspace.create.project",
 							"data": ""
+						},
+						{
+							"name":"Linked Project",
+							"link":"#",
+							"order":"103",
+							"event":"workspace.link.project",
+							"data": ""
 						}
 					]
 				},
