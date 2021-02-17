@@ -27,7 +27,8 @@ exports.getMenu = function() {
 					"name":"Show View",
 					"link":"#",
 					"order":"820",
-					"items":[]
+					"items":[],
+					"divider": true
 				},
 				{
 					"name":"Reset",
