@@ -48,7 +48,7 @@ const defaultMenuItems = [
 		order: 990,
 		event: "open",
 		data: "http://download.dirigible.io/",
-		divider: false
+		divider: true
 	}
 ];
 
