@@ -8,12 +8,11 @@
  * Contributors:
  *   SAP - initial API and implementation
  */
-exports.getPerspective = function() {
-	var perspective = {
-			"name":"Workbench",
-			"link":"../ide/index.html",
-			"order":"100",
-			"image":"files-o"
+exports.getPerspective = function () {
+	return {
+		"name": "Workbench",
+		"link": "../ide/index.html",
+		"order": "100",
+		"image": "files-o"
 	};
-	return perspective;
 }
