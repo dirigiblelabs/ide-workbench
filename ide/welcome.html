@@ -205,14 +205,14 @@
 
             $scope.searchText = '';
 
-            $http.get('../../js/ide-core/services/templates.js').success(function (response) {
+            $http.get('/services/v4/js/ide-core/services/templates.js').success(function (response) {
                 $scope.templates = response.filter(function (value, index, arr) { return !value.extension; });
                 $scope.templateParameters = [];
                 for (let i = 0; i < $scope.templates.length; i++) {
                     $scope.templateParameters[$scope.templates[i].id] = $scope.templates[i].parameters;
                 }
             });
-            $http.get('../../ide/workspaces').success(function (response) {
+            $http.get('/services/v4/ide/workspaces').success(function (response) {
                 $scope.workspaces = response;
             });
 
@@ -237,7 +237,7 @@
 
             $scope.okGenerateFromTemplate = function () {
                 if ($scope.projectName) {
-                    let url = '../../ide/generate/file/' + $scope.selectedWorkspace + '/' + $scope.projectName + '/' + $scope.fileName;
+                    let url = '/services/v4/ide/generate/file/' + $scope.selectedWorkspace + '/' + $scope.projectName + '/' + $scope.fileName;
                     $scope.parameters = $scope.parameters === undefined || $scope.parameters === null ? [] : $scope.parameters;
                     $http.post(url, { "template": $scope.selectedTemplate.id, "parameters": $scope.parameters })
                         .then(function (response) {
