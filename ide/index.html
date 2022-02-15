@@ -109,8 +109,22 @@
                                 alert(msg.data);
                             },
                             'editor.file.dirty': function (msg) {
-                                dirtyFiles.push(msg.data);
-                                Layouts.manager.setEditorDirty(msg.data, true);
+                                var file, isDirty;
+                                if (typeof msg.data === 'string') {
+                                    file = msg.data;
+                                    isDirty = true;
+                                } else {
+                                    file = msg.data.file;
+                                    isDirty = msg.data.isDirty;
+                                }
+
+                                if (isDirty) {
+                                    dirtyFiles.push(file);
+                                } else {
+                                    dirtyFiles = dirtyFiles.filter(e => e !== file);
+                                }
+
+                                Layouts.manager.setEditorDirty(file, isDirty);
                             },
                             'editor.file.saved': function (msg) {
                                 dirtyFiles = dirtyFiles.filter(e => e !== msg.data);
