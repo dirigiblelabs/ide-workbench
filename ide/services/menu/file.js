@@ -10,69 +10,46 @@
  */
 exports.getMenu = function () {
 	return {
-		"name": "File",
-		"link": "#",
-		"order": "100",
-		"items": [
+		label: "File",
+		order: 1,
+		items: [
 			{
-				"name": "New",
-				"link": "#",
-				"order": "101",
-				"event": "",
-				"data": "",
-				"items": [
+				label: "New",
+				order: 1,
+				items: [
 					{
-						"name": "Project",
-						"link": "#",
-						"order": "101",
-						"event": "workspace.create.project",
-						"data": ""
+						label: "Project",
+						order: 1,
+						event: "workspace.create.project",
 					},
 					{
-						"name": "Linked Project",
-						"link": "#",
-						"order": "102",
-						"event": "workspace.link.project",
-						"data": ""
+						label: "Linked Project",
+						order: 2,
+						event: "workspace.link.project",
 					},
 					{
-						"name": "Workspace",
-						"link": "#",
-						"order": "103",
-						"event": "workspace.create.workspace",
-						"data": ""
+						label: "Workspace",
+						order: 3,
+						event: "workspace.create.workspace",
 					}
 				]
 			},
 			{
-				"name": "Publish All",
-				"link": "#",
-				"order": "102",
-				"event": "workspace.publish.all",
-				"data": ""
+				label: "Publish All",
+				order: 2,
+				event: "workspace.publish.all",
 			},
 			{
-				"name": "Export All",
-				"link": "#",
-				"order": "103",
-				"event": "workspace.export.all",
-				"data": ""
+				label: "Export All",
+				order: 3,
+				event: "workspace.export.all",
 			},
 			{
-				"name": "Save All",
-				"link": "#",
-				"order": "105",
-				"event": "workbench.editor.save",
-				"data": "",
-				"divider": true
+				label: "Save All",
+				order: 4,
+				event: "workbench.editor.save",
+				divider: true
 			},
-			{
-				"name": "Exit",
-				"link": "/logout",
-				"order": "199",
-				"event": "workbench.editor.save",
-				"data": ""
-			}
 		]
 	};
 }

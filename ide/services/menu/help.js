@@ -11,42 +11,37 @@
 
 const defaultMenuItems = [
 	{
-		name: "Help Portal",
-		link: "#",
-		order: 910,
-		event: "open",
+		label: "Help Portal",
+		action: "open",
+		order: 1,
 		data: "https://www.dirigible.io/help/",
 		divider: false
 	},
 	{
-		name: "Contact Support",
-		link: "#",
-		order: 915,
-		event: "open",
+		label: "Contact Support",
+		action: "open",
+		order: 2,
 		data: "https://github.com/eclipse/dirigible/issues",
 		divider: false
 	},
 	{
-		name: "Suggest a Feature",
-		link: "#",
-		order: 920,
-		event: "open",
+		label: "Suggest a Feature",
+		action: "open",
+		order: 3,
 		data: "https://github.com/eclipse/dirigible/issues/new?assignees=&labels=&template=feature_request.md&title=[New%20Feature]",
 		divider: false
 	},
 	{
-		name: "What's New",
-		link: "#",
-		order: 920,
-		event: "open",
+		label: "What's New",
+		action: "open",
+		order: 4,
 		data: "https://twitter.com/dirigible_io",
 		divider: false
 	},
 	{
-		name: "Check for Update",
-		link: "#",
-		order: 990,
-		event: "open",
+		label: "Check for Update",
+		action: "open",
+		order: 5,
 		data: "http://download.dirigible.io/",
 		divider: true
 	}
@@ -56,16 +51,13 @@ let config = require("core/v4/configurations");
 
 exports.getMenu = function () {
 	let menu = {
-		name: "Help",
-		link: "#",
-		order: 900,
+		label: "Help",
 		items: [
 			{
-				name: "About",
-				link: "#",
-				order: 991,
-				event: "openView",
-				data: "",
+				label: "About",
+				action: "openDialogWindow",
+				order: 6,
+				dialogId: "about",
 				divider: false
 			}]
 	};
@@ -76,10 +68,9 @@ exports.getMenu = function () {
 		helpItems.forEach(e => {
 			let item = e.trim();
 			menu.items.push({
-				name: config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_NAME`, item),
-				link: "#",
+				label: config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_NAME`, item),
 				order: parseInt(config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_ORDER`, "0")),
-				event: "open",
+				action: "open",
 				data: config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_URL`, "#"),
 				divider: config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_DIVIDER`, "false").toLowerCase() === "true"
 			});
