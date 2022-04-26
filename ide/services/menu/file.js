@@ -47,7 +47,7 @@ exports.getMenu = function () {
 			{
 				label: "Save All",
 				order: 4,
-				event: "workbench.editor.save",
+				event: "editor.file.save.all",
 				divider: true
 			},
 		]

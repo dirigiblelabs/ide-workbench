@@ -8,25 +8,40 @@
  * Contributors:
  *   SAP - initial API and implementation
  */
+
+// Deprecated, do not edit.
+
 let extensions = require('core/v4/extensions');
 
 exports.getMenu = function () {
 	let menu = {
-		label: "Window",
-		order: 2,
-		items: [
+		"name": "Window",
+		"link": "#",
+		"order": "800",
+		"onClick": "alert('Window has been clicked')",
+		"items": [
 			{
-				label: "Open Perspective",
-				order: 1,
-				items: [],
+				"name": "Open Perspective",
+				"link": "#",
+				"order": "810",
+				"items": []
 			},
 			{
-				label: "Show View",
-				order: 2,
-				items: [],
+				"name": "Show View",
+				"link": "#",
+				"order": "820",
+				"items": [],
+				"divider": true
 			},
+			{
+				"name": "Reset",
+				"link": "",
+				"order": "830"
+			}
 		]
 	};
+
+
 
 	let perspectiveExtensions = extensions.getExtensions('ide-perspective');
 	let perspectiveExtensionDefinitions = [];
@@ -35,17 +50,16 @@ exports.getMenu = function () {
 		let module = perspectiveExtensions[i];
 		perspectiveExtensionDefinitions.push(require(module).getPerspective());
 	}
-
 	perspectiveExtensionDefinitions = perspectiveExtensionDefinitions.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 	for (let i = 0; i < perspectiveExtensionDefinitions.length; i++) {
 		let perspectiveInfo = perspectiveExtensionDefinitions[i];
-		menu.items[0].items.push({
-			id: perspectiveInfo.id,
-			label: perspectiveInfo.name,
-			order: i,
-			link: perspectiveInfo.link,
-			action: 'openPerspective',
-		});
+		let perspectiveMenu = {
+			"name": perspectiveInfo.name,
+			"link": "#",
+			"order": "" + (810 + i),
+			"onClick": "window.open('" + perspectiveInfo.link + "', '_blank')"
+		};
+		menu.items[0].items.push(perspectiveMenu);
 	}
 
 	let viewExtensions = extensions.getExtensions('ide-view');
@@ -55,15 +69,15 @@ exports.getMenu = function () {
 		viewExtensionDefinitions.push(require(module).getView());
 	}
 	viewExtensionDefinitions = viewExtensionDefinitions.sort((a, b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()));
-
 	for (let i = 0; i < viewExtensionDefinitions.length; i++) {
 		let viewInfo = viewExtensionDefinitions[i];
-		menu.items[1].items.push({
-			id: viewInfo.id,
-			label: viewInfo.label,
-			order: i,
-			action: 'openView',
-		});
+		let viewMenu = {
+			"name": viewInfo.label,
+			"link": "#",
+			"order": "" + (820 + i),
+			"onClick": "window.open('" + viewInfo.link + "', '_blank')"
+		};
+		menu.items[1].items.push(viewMenu);
 	}
 
 	return menu;

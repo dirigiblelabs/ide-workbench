@@ -10,75 +10,83 @@
  */
 
 const defaultMenuItems = [
-	{
-		label: "Help Portal",
-		action: "open",
-		order: 1,
-		data: "https://www.dirigible.io/help/",
-		divider: false
-	},
-	{
-		label: "Contact Support",
-		action: "open",
-		order: 2,
-		data: "https://github.com/eclipse/dirigible/issues",
-		divider: false
-	},
-	{
-		label: "Suggest a Feature",
-		action: "open",
-		order: 3,
-		data: "https://github.com/eclipse/dirigible/issues/new?assignees=&labels=&template=feature_request.md&title=[New%20Feature]",
-		divider: false
-	},
-	{
-		label: "What's New",
-		action: "open",
-		order: 4,
-		data: "https://twitter.com/dirigible_io",
-		divider: false
-	},
-	{
-		label: "Check for Update",
-		action: "open",
-		order: 5,
-		data: "http://download.dirigible.io/",
-		divider: true
-	}
+    {
+        name: "Help Portal",
+        link: "#",
+        order: 910,
+        event: "open",
+        data: "https://www.dirigible.io/help/",
+        divider: false
+    },
+    {
+        name: "Contact Support",
+        link: "#",
+        order: 915,
+        event: "open",
+        data: "https://github.com/eclipse/dirigible/issues",
+        divider: false
+    },
+    {
+        name: "Suggest a Feature",
+        link: "#",
+        order: 920,
+        event: "open",
+        data: "https://github.com/eclipse/dirigible/issues/new?assignees=&labels=&template=feature_request.md&title=[New%20Feature]",
+        divider: false
+    },
+    {
+        name: "What's New",
+        link: "#",
+        order: 920,
+        event: "open",
+        data: "https://twitter.com/dirigible_io",
+        divider: false
+    },
+    {
+        name: "Check for Update",
+        link: "#",
+        order: 990,
+        event: "open",
+        data: "http://download.dirigible.io/",
+        divider: true
+    }
 ];
 
 let config = require("core/v4/configurations");
 
 exports.getMenu = function () {
-	let menu = {
-		label: "Help",
-		items: [
-			{
-				label: "About",
-				action: "openDialogWindow",
-				order: 6,
-				dialogId: "about",
-				divider: false
-			}]
-	};
+    let menu = {
+        name: "Help",
+        link: "#",
+        order: 900,
+        items: [
+            {
+                name: "About",
+                link: "#",
+                order: 991,
+                event: "openView",
+                data: "",
+                divider: false
+            }]
+    };
 
-	let brandingHelpItems = config.get("DIRIGIBLE_BRANDING_HELP_ITEMS", "");
-	if (brandingHelpItems && typeof brandingHelpItems === "string") {
-		let helpItems = brandingHelpItems.split(",");
-		helpItems.forEach(e => {
-			let item = e.trim();
-			menu.items.push({
-				label: config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_NAME`, item),
-				order: parseInt(config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_ORDER`, "0")),
-				action: "open",
-				data: config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_URL`, "#"),
-				divider: config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_DIVIDER`, "false").toLowerCase() === "true"
-			});
-		});
-	} else {
-		menu.items = menu.items.concat(defaultMenuItems);
-	}
-
-	menu.items.sort((a, b) => a.order - b.order);
-	return menu;
+    let brandingHelpItems = config.get("DIRIGIBLE_BRANDING_HELP_ITEMS", "");
+    if (brandingHelpItems && typeof brandingHelpItems === "string") {
+        let helpItems = brandingHelpItems.split(",");
+        helpItems.forEach(e => {
+            let item = e.trim();
+            menu.items.push({
+                name: config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_NAME`, item),
+                link: "#",
+                order: parseInt(config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_ORDER`, "0")),
+                event: "open",
+                data: config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_URL`, "#"),
+                divider: config.get(`DIRIGIBLE_BRANDING_HELP_ITEM_${item}_DIVIDER`, "false").toLowerCase() === "true"
+            });
+        });
+    } else {
+        menu.items = menu.items.concat(defaultMenuItems);
+    }
+    menu.items.sort((a, b) => a.order - b.order);
+    return menu;
 };
