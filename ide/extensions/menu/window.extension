@@ -1,5 +1,5 @@
 {
-    "module": "ide-core/services/menus/window",
+    "module": "ide-core/services/menus/window.js",
     "extensionPoint": "ide-menu",
     "description": "Window Menu"
 }
