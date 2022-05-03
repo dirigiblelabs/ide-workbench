@@ -9,6 +9,8 @@
  *   SAP - initial API and implementation
  */
 
+// Deprecated, do not edit.
+
 const defaultMenuItems = [
     {
         name: "Help Portal",
