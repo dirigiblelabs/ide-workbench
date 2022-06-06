@@ -12,7 +12,6 @@
 <html lang="en" ng-app="workbench" ng-controller="WorkbenchController as wb" xmlns="http://www.w3.org/1999/xhtml">
 
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,8 +57,6 @@
         <ide-status-bar></ide-status-bar>
 
         <script type="text/javascript">
-            let dirtyFiles = [];
-
             angular.module('workbench', ['ngResource', 'ideLayout', 'ideUI'])
                 .config(["messageHubProvider", function (messageHubProvider) {
                     messageHubProvider.eventIdPrefix = 'workbench';
@@ -67,51 +64,10 @@
                 .controller('WorkbenchController', ["$scope", "messageHub", function ($scope, messageHub) {
 
                     this.layoutModel = {
-                        views: ['workspace', 'import', 'search', 'properties', 'console', 'preview', 'problems'],
-                        events: {
-                            'workspace.file.deleted': function (msg) {
-                                //TODO: check if deleted file is currently open in editor and close the editor window
-                                console.log('file deleted recieved:' + msg);
-                            },
-                            'workbench.open': function (msg) {
-                                window.open(msg.data, '_blank');
-                            },
-                            'workbench.alert': function (msg) {
-                                alert(msg.data);
-                            },
-                            // 'editor.file.dirty': function (msg) {
-                            //     let file, isDirty;
-                            //     if (typeof msg.data === 'string') {
-                            //         file = msg.data;
-                            //         isDirty = true;
-                            //     } else {
-                            //         file = msg.data.file;
-                            //         isDirty = msg.data.isDirty;
-                            //     }
-
-                            //     if (isDirty) {
-                            //         dirtyFiles.push(file);
-                            //     } else {
-                            //         dirtyFiles = dirtyFiles.filter(e => e !== file);
-                            //     }
-
-                            //     Layouts.manager.setEditorDirty(file, isDirty);
-                            // },
-                            // 'editor.file.saved': function (msg) {
-                            //     dirtyFiles = dirtyFiles.filter(e => e !== msg.data);
-                            //     Layouts.manager.setEditorDirty(msg.data, false);
-                            // }
-                        }
+                        views: ['projects', 'import', 'search', 'properties', 'console', 'preview', 'problems'],
                     };
 
                 }]);
-
-            window.addEventListener('beforeunload', function (e) {
-                if (dirtyFiles.length > 0) {
-                    e.preventDefault();
-                    e.returnValue = '';
-                }
-            });
         </script>
 
     </body>

@@ -20,35 +20,40 @@ exports.getMenu = function () {
 					{
 						label: "Project",
 						order: 1,
-						event: "workspace.create.project",
+						event: "projects.create.project",
+						data: { isMenu: true },
 					},
 					{
 						label: "Linked Project",
 						order: 2,
-						event: "workspace.link.project",
+						event: "projects.link.project",
+						data: { isMenu: true },
 					},
-					{
-						label: "Workspace",
-						order: 3,
-						event: "workspace.create.workspace",
-					}
-				]
-			},
-			{
-				label: "Publish All",
-				order: 2,
-				event: "workspace.publish.all",
-			},
-			{
-				label: "Export All",
-				order: 3,
-				event: "workspace.export.all",
+				],
 			},
 			{
 				label: "Save All",
-				order: 4,
+				order: 2,
 				event: "editor.file.save.all",
-				divider: true
+				divider: true,
+			},
+			{
+				label: "Publish All",
+				order: 3,
+				event: "projects.tree.contextmenu",
+				data: { itemId: "publishAll" },
+			},
+			{
+				label: "Unpublish All",
+				order: 4,
+				event: "projects.tree.contextmenu",
+				divider: true,
+				data: { itemId: "unpublishAll" },
+			},
+			{
+				label: "Export All",
+				order: 5,
+				event: "projects.export.all",
 			},
 		]
 	};
