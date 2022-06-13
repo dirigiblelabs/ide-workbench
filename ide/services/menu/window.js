@@ -8,6 +8,9 @@
  * Contributors:
  *   SAP - initial API and implementation
  */
+
+// Deprecated, do not edit.
+
 let extensions = require('core/v4/extensions');
 
 exports.getMenu = function () {
@@ -65,11 +68,11 @@ exports.getMenu = function () {
 		let module = viewExtensions[i];
 		viewExtensionDefinitions.push(require(module).getView());
 	}
-	viewExtensionDefinitions = viewExtensionDefinitions.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+	viewExtensionDefinitions = viewExtensionDefinitions.sort((a, b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()));
 	for (let i = 0; i < viewExtensionDefinitions.length; i++) {
 		let viewInfo = viewExtensionDefinitions[i];
 		let viewMenu = {
-			"name": viewInfo.name,
+			"name": viewInfo.label,
 			"link": "#",
 			"order": "" + (820 + i),
 			"onClick": "window.open('" + viewInfo.link + "', '_blank')"
